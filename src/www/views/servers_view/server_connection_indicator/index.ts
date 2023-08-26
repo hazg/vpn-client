@@ -28,7 +28,7 @@ export enum ServerConnectionState {
   DISCONNECTED = 'disconnected',
 }
 
-const CIRCLE_SIZES = [css`large`, css`medium`, css`small`];
+const CIRCLE_SIZES = [css`large`]; //, css`medium`, css`small`];
 
 @customElement('server-connection-indicator')
 export class ServerConnectionIndicator extends LitElement {
@@ -68,10 +68,10 @@ export class ServerConnectionIndicator extends LitElement {
       .circle {
         display: inline-block;
 
-        /* 
-          setting translate3d can have weird behavior on certain platforms, so 
-          hiding the element backface becomes necessary - 
-          https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility 
+        /*
+          setting translate3d can have weird behavior on certain platforms, so
+          hiding the element backface becomes necessary -
+          https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility
         */
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
@@ -88,9 +88,9 @@ export class ServerConnectionIndicator extends LitElement {
         -webkit-animation-iteration-count: infinite;
       }
 
-      /* 
-        these are not applied to circle-large so that 
-        that image can drive the implicit width 
+      /*
+        these are not applied to circle-large so that
+        that image can drive the implicit width
       */
       .circle-medium,
       .circle-small {

@@ -16,8 +16,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
-                <menuItem title="Outline" id="56">
-                    <menu key="submenu" title="Outline" systemMenu="apple" id="57">
+                <menuItem title="VPN Not Locking" id="56">
+                    <menu key="submenu" title="VPN Not Locking" systemMenu="apple" id="57">
                         <items>
                             <menuItem title="About Outline" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>

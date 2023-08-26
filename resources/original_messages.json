@@ -459,7 +459,7 @@
   },
   "servers_page_title": {
     "description": "The title of the main page of the application, showing the application's title (Outline). Outline is the product name and can be found in the translation glossary.",
-    "message": "Outline"
+    "message": "VPN Not Locking"
   },
   "submit": {
     "description": "The text of a button to submit a form.",

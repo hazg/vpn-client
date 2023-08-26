@@ -51,6 +51,7 @@ Polymer({
         height: 100%;
         max-width: 400px;
         margin: auto;
+        background: #2d3573;
       }
       .flex-column-container {
         margin: 0 auto;
