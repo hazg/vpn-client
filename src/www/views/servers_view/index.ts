@@ -106,8 +106,8 @@ Polymer({
           </div>
 
           <select>
-            <option>TEST</option>
             <option>TEST1</option>
+            <option>TEST2</option>
           </select>
           <template is="dom-if" if="[[!useAltAccessMessage]]">
             <div
