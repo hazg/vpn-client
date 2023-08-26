@@ -103,6 +103,10 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
           --paper-icon-button-ink-color: #eff;
         }
 
+        #app-toolbar-left {
+          display: none;
+        }
+
         #app-toolbar-left,
         #app-toolbar-right {
           flex: 1;

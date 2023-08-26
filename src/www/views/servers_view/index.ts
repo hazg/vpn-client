@@ -104,6 +104,11 @@ Polymer({
               <div class="subtle">[[localize('server-add-zero-state-instructions')]]</div>
             </paper-button>
           </div>
+
+          <select>
+            <option>TEST</option>
+            <option>TEST1</option>
+          </select>
           <template is="dom-if" if="[[!useAltAccessMessage]]">
             <div
               class="footer subtle"
