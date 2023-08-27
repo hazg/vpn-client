@@ -15,9 +15,9 @@
 -->
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="org.outline.android.client" version="0.0.0-debug" android-versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Outline</name>
+    <name>VPN Not Locking</name>
     <description>
-        Internet without borders (powered by Shadowsocks)
+        Internet without borders
     </description>
     <content src="index_cordova.html" />
     <access origin="*" />
@@ -31,6 +31,8 @@
     <!-- Android -->
     <platform name="android">
         <preference name="SplashMaintainAspectRatio" value="true" />
+
+        <preference name="ShowSplashScreen" value="false" />
 
         <icon density="ldpi" src="resources/icons/android/icon_mdpi.png" />
         <icon density="mdpi" src="resources/icons/android/icon_mdpi.png" />
