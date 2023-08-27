@@ -1,7 +1,7 @@
 {
   "about_outline": {
-    "description": "The contents of the About page of the app. Outline is the product name and can be found in the translation glossary.",
-    "message": "Outline is a product by $JIGSAW$ that lets anyone create, run, and share access to their own VPN. Outline is designed to be resistant to blocking. Visit $GETOUTLINE$ to learn how to get started.$NEW_LINE$$NEW_LINE$Outline is open source software powered by $SHADOWSOCKS$. You can contribute to the code on $GITHUB$ and join the conversation on $REDDIT$.",
+    "description": "The contents of the About page of the app. VPN Not Locking is the product name and can be found in the translation glossary.",
+    "message": "VPN Not Locking is a product that lets anyone create, run, and share access to their own VPN. Outline is designed to be resistant to blocking. Visit $GETOUTLINE$ to learn how to get started.$NEW_LINE$$NEW_LINE$Outline is open source software powered by $SHADOWSOCKS$. You can contribute to the code on $GITHUB$ and join the conversation on $REDDIT$.",
     "placeholders": {
       "GETOUTLINE": {
         "content": "<a href={outlineUrl}>getoutline.org</a>"
@@ -28,11 +28,11 @@
     "message": "About"
   },
   "auto_connect_dialog_detail": {
-    "description": "An explanation of the connection behavior of the app. Outline is the product name and can be found in the translation glossary.",
-    "message": "Unless you disconnect from your Outline server, Outline will automatically connect next time you restart your device."
+    "description": "An explanation of the connection behavior of the app. VPN Not Locking is the product name and can be found in the translation glossary.",
+    "message": "Unless you disconnect from your VPN Not Locking server, VPN Not Locking will automatically connect next time you restart your device."
   },
   "auto_connect_dialog_title": {
-    "description": "The title of a message to the user that tells them Outline will keep connected unless explicitly told to disconnect. Outline is the product name and can be found in the translation glossary.",
+    "description": "The title of a message to the user that tells them VPN Not Locking will keep connected unless explicitly told to disconnect. Outline is the product name and can be found in the translation glossary.",
     "message": "Stay protected, always"
   },
   "cancel": {
@@ -88,7 +88,7 @@
     "message": "Failed to download the server configuration. Screenshot the error details and send them to your access key provider."
   },
   "error_connection_proxy": {
-    "description": "An error message show when Outline fails to establish contact with the obfuscation proxy.",
+    "description": "An error message show when VPN Not Locking fails to establish contact with the obfuscation proxy.",
     "message": "Failed to connect. Please check your internet connectivity, then screenshot the error details and send them to your access key provider."
   },
   "error_details": {
@@ -108,14 +108,13 @@
     "message": "Server “$SERVER_NAME$” already added.",
     "placeholders": {
       "SERVER_NAME": {
-        "content": "{serverName}",
-        "example": "My Outline Server"
+        "example": "My VPN Not Locking Server"
       }
     }
   },
   "error_server_incompatible": {
     "description": "Error message shown when the provided access key isn't compatible the user's version of the application. Outline is the product name and can be found in the translation glossary.",
-    "message": "Sorry, this access key is not compatible with this version of Outline."
+    "message": "Sorry, this access key is not compatible with this version of VPN Not Locking."
   },
   "error_shadowsocks_unsupported_cipher": {
     "description": "The server you requested to add uses an unsafe cipher ($CIPHER$). Please contact the person who gave you this access key.",
@@ -165,7 +164,7 @@
   },
   "feedback_performance": {
     "description": "This is one of the feedback categories the user can select in a drop-down when sending a feedback to the app developers. This is for performance feedback, for example, the speed of connection.",
-    "message": "Outline is slow"
+    "message": "VPN Not Locking is slow"
   },
   "feedback_privacy": {
     "description": "Text appearing above a feedback form explaining the feedback process. Includes a link to the Data Collection Policy as marked by the start and end of link. Outline is the product name and can be found in the translation glossary.",
@@ -245,7 +244,7 @@
   },
   "outline_plugin_error_system_configuration": {
     "description": "Error message shown when the application cannot connect because the installer could not configure the system or because changes have been made to the system which can only be corrected by running the installer again.",
-    "message": "Sorry, it looks like Outline is not properly installed. Please try installing it again. If that doesn't work, please submit feedback through the app."
+    "message": "Sorry, it looks like VPN Not Locking is not properly installed. Please try installing it again. If that doesn't work, please submit feedback through the app."
   },
   "outline_plugin_error_udp_forwarding_not_enabled": {
     "description": "An error message shown when the application tries to connect to a server that does not have the correct UDP forwarding configuration.",
@@ -257,23 +256,23 @@
   },
   "outline_plugin_error_vpn_permission_not_granted": {
     "description": "An error message shown when the application does not have the proper operating system permission to create a VPN connection. Outline is the product name and can be found in the translation glossary.",
-    "message": "Outline needs your permission to set up a VPN connection to the server. Please try again, or submit feedback if you need help."
+    "message": "VPN Not Locking needs your permission to set up a VPN connection to the server. Please try again, or submit feedback if you need help."
   },
   "outline_services_installation_confirmation": {
-    "desciption": "A prompt message asking for permission whether Outline is allowed to install backend services, because that requires administrative permission.",
-    "message": "We will initialize Outline, which may require admin permissions. Would you like to proceed?"
+    "desciption": "A prompt message asking for permission whether VPN Not Locking is allowed to install backend services, because that requires administrative permission.",
+    "message": "We will initialize VPN Not Locking, which may require admin permissions. Would you like to proceed?"
   },
   "outline_services_installation_failed": {
-    "desciption": "An error message shown when the user tries to install Outline backend services but failed for some reason.",
-    "message": "Unfortunately we are not able to initialize Outline, please submit feedback through the app."
+    "desciption": "An error message shown when the user tries to install VPN Not Locking backend services but failed for some reason.",
+    "message": "Unfortunately we are not able to initialize VPN Not Locking, please submit feedback through the app."
   },
   "outline_services_installed": {
-    "desciption": "An information message shown when the Outline successfully installed all backend services, and we ask the user try to reconnect to the server.",
-    "message": "Outline has been successfully initialized, please try again to connect to the server."
+    "desciption": "An information message shown when the VPN Not Locking successfully installed all backend services, and we ask the user try to reconnect to the server.",
+    "message": "VPN Not Locking has been successfully initialized, please try again to connect to the server."
   },
   "outline_services_installing": {
-    "desciption": "An information message indicating Outline is installing all its backend services.",
-    "message": "Initializing Outline..."
+    "desciption": "An information message indicating VPN Not Locking is installing all its backend services.",
+    "message": "Initializing VPN Not Locking..."
   },
   "privacy": {
     "description": "The text for a main menu item for the privacy policy and information.",
@@ -284,8 +283,8 @@
     "message": "Some technical information is sent if you submit feedback, if there’s an app error or crash, or if your server administrator opts in to share anonymous server usage data."
   },
   "privacy_title": {
-    "description": "The title of a information page about user privacy. Outline is the product name and can be found in the translation glossary.",
-    "message": "Outline will never collect your personal information"
+    "description": "The title of a information page about user privacy. VPN Not Locking is the product name and can be found in the translation glossary.",
+    "message": "VPN Not Locking will never collect your personal information"
   },
   "quit": {
     "description": "The text for a button that quits (closes) the application.",
@@ -355,7 +354,7 @@
     "placeholders": {
       "SERVER_NAME": {
         "content": "{serverName}",
-        "example": "My Outline Server"
+        "example": "My VPN Not Locking Server"
       }
     }
   },
@@ -365,7 +364,7 @@
     "placeholders": {
       "SERVER_NAME": {
         "content": "{serverName}",
-        "example": "My Outline Server"
+        "example": "My VPN Not Locking Server"
       }
     }
   },
@@ -405,7 +404,7 @@
   },
   "server_default_name_outline": {
     "description": "The default name for a server when adding a new server to the application. Outline is the product name and can be found in the translation glossary.",
-    "message": "Outline Server"
+    "message": "VPN Not Locking Server"
   },
   "server_detected": {
     "description": "A message to confirm that the user wants to add the given server as a new connection.",
@@ -417,7 +416,7 @@
     "placeholders": {
       "SERVER_NAME": {
         "content": "{serverName}",
-        "example": "My Outline Server"
+        "example": "My VPN Not Locking Server"
       }
     }
   },
@@ -431,7 +430,7 @@
     "placeholders": {
       "SERVER_NAME": {
         "content": "{serverName}",
-        "example": "My Outline Server"
+        "example": "My VPN Not Locking Server"
       }
     }
   },
@@ -441,7 +440,7 @@
     "placeholders": {
       "SERVER_NAME": {
         "content": "{serverName}",
-        "example": "My Outline Server"
+        "example": "My VPN Not Locking Server"
       }
     }
   },
@@ -491,7 +490,7 @@
   },
   "update_downloaded": {
     "description": "A message shown to the user to notify them about a new downloaded version. Outline is the product name and can be found in the translation glossary.",
-    "message": "An updated version of Outline has been downloaded. It will be installed when you restart Outline."
+    "message": "An updated version of VPN Not Locking has been downloaded. It will be installed when you restart Outline."
   },
   "version": {
     "description": "A line of text on the About page of the application showing the version of the application the user is using.",
