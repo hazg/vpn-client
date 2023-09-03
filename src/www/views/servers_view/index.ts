@@ -94,8 +94,8 @@ Polymer({
       }
     </style>
     <div class="server-list-container">
-      <button on-click="_changeLanguage" data-language="en">EN</button>
-      <button on-click="_changeLanguage" data-language="ru">RU</button>
+      <button on-click="_changeCountry" data-country="en">EN</button>
+      <button on-click="_changeCountry" data-country="ru">RU</button>
       <template is="dom-if" if="[[shouldShowZeroState]]">
         <div class="flex-column-container">
           <div class="flex-column-container">
@@ -153,8 +153,8 @@ Polymer({
   _requestPromptAddServer() {
     this.fire('PromptAddServerRequested', {});
   },
-  // & { model: { language: String } }
-  _changeLanguage(event: MouseEvent & {target: {dataset: DOMStringMap}}) {
-    this.fire('ChangeLanguage', {language: event.target.dataset.language});
+
+  _changeCountry(event: MouseEvent & {target: {dataset: DOMStringMap}}) {
+    this.fire('ChangeCountry', {country: event.target.dataset.country});
   },
 });

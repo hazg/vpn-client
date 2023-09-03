@@ -88,7 +88,7 @@ export class OutlineServer implements Server {
       return;
     }
     const settings = new Settings();
-    return new URL(this.accessKey + '?lang=' + settings.get(SettingsKey.VPN_LANGUAGE) || 'en');
+    return new URL(this.accessKey + '?lang=' + settings.get(SettingsKey.VPN_COUNTRY) || 'en');
   }
 
   get isOutlineServer() {

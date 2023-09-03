@@ -21,7 +21,7 @@ export enum SettingsKey {
   VPN_WARNING_DISMISSED = 'vpn-warning-dismissed',
   AUTO_CONNECT_DIALOG_DISMISSED = 'auto-connect-dialog-dismissed',
   PRIVACY_ACK = 'privacy-ack',
-  VPN_LANGUAGE = 'language',
+  VPN_COUNTRY = 'country',
 }
 
 // Persistent storage for user settings that supports a limited set of keys.

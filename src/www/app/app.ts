@@ -121,7 +121,7 @@ export class App {
 
     // Register handlers for events fired by Polymer components.
     this.rootEl.addEventListener('PromptAddServerRequested', this.requestPromptAddServer.bind(this));
-    this.rootEl.addEventListener('ChangeLanguage', this.changeLanguage.bind(this));
+    this.rootEl.addEventListener('ChangeCountry', this.changeCountry.bind(this));
     this.rootEl.addEventListener('AddServerConfirmationRequested', this.requestAddServerConfirmation.bind(this));
     this.rootEl.addEventListener('AddServerRequested', this.requestAddServer.bind(this));
     this.rootEl.addEventListener('IgnoreServerRequested', this.requestIgnoreServer.bind(this));
@@ -135,6 +135,7 @@ export class App {
     this.feedbackViewEl.$.submitButton.addEventListener('tap', this.submitFeedback.bind(this));
     this.rootEl.addEventListener('PrivacyTermsAcked', this.ackPrivacyTerms.bind(this));
     this.rootEl.addEventListener('SetLanguageRequested', this.setAppLanguage.bind(this));
+    this.rootEl.addEventListener('SetCountryRequested', this.setCountry.bind(this));
 
     // Register handlers for events published to our event queue.
     this.eventQueue.subscribe(events.ServerAdded, this.onServerAdded.bind(this));
@@ -279,6 +280,12 @@ export class App {
     this.changeToDefaultPage();
   }
 
+  private setCountry(event: CustomEvent) {
+    const countryCode = event.detail.countryCode;
+    this.settings.set(SettingsKey.VPN_COUNTRY, countryCode);
+    this.changeToDefaultPage();
+  }
+
   private handleClipboardText(text: string) {
     // Shorten, sanitise.
     // Note that we always check the text, even if the contents are same as last time, because we
@@ -295,10 +302,9 @@ export class App {
     this.rootEl.showToast(this.localize('update-downloaded'), 60000);
   }
 
-  private changeLanguage(event: Event & {detail: {language: string}}) {
-    this.settings.set(SettingsKey.VPN_LANGUAGE, event.detail.language);
-    console.log(event, event.detail.language);
-    // settings.set(SettingsKey.VPN_LANGUAGE, language);
+  private changeCountry(event: Event & {detail: {country: string}}) {
+    this.settings.set(SettingsKey.VPN_COUNTRY, event.detail.country);
+    console.log(`Set VPN country to: ${event.detail.country}`);
   }
 
   private requestPromptAddServer() {

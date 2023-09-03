@@ -41,6 +41,7 @@ import './about-view.js';
 import './add-server-view.js';
 import './feedback-view.js';
 import './language-view.js';
+import './country-view.js';
 import './licenses-view.js';
 import './outline-icons.js';
 import './privacy-view.js';
@@ -104,7 +105,7 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
         }
 
         #app-toolbar-left {
-          display: none;
+          /* display: none; */
         }
 
         #app-toolbar-left,
@@ -304,13 +305,22 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
             version="[[appVersion]]"
             build="[[appBuild]]"
           ></about-view>
+
           <language-view
             name="language"
             id="aboutView"
             selected-language="[[language]]"
             languages="[[_getLanguagesAvailableValues(LANGUAGES_AVAILABLE)]]"
           ></language-view>
-          <!-- Do not mirror licenses text, as it is not localized. -->
+
+          <country-view
+            name="country"
+            id="countryView"
+            selected-country="[[country]]"
+            countries="[[_getCountriesAvailableValues(LANGUAGES_AVAILABLE)]]"
+          ></country-view>
+
+
           <licenses-view
             name="licenses"
             id="licensesView"
@@ -318,6 +328,7 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
             localize="[[localize]]"
             root-path="[[rootPath]]"
           ></licenses-view>
+
         </iron-pages>
       </app-header-layout>
 
@@ -384,6 +395,12 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
               <img src$="[[rootPath]]assets/icons/change_language.png" alt="change language"  />
               [[localize('change-language-page-title')]]
             </paper-item>
+
+            <paper-item name="country" class$="[[_computeIsLastVisibleMenuItem(shouldShowQuitButton)]]">
+              <img src$="[[rootPath]]assets/icons/change_language.png" alt="change country"  />
+              [[localize('change-country-page-title')]]
+            </paper-item>
+
             <paper-item name="quit" class="last-menu-item" hidden$="[[!shouldShowQuitButton]]">
               <img src$="[[rootPath]]assets/icons/quit.png" alt="quit" />
               [[localize('quit')]]
@@ -808,6 +825,14 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
     return Object.values(languagesAvailable).sort((a, b) => {
       return a.name > b.name ? 1 : -1;
     });
+  }
+
+  _getCountriesAvailableValues(countriesAvailable) {
+    // console.log('COUNTRIES', servers[0])
+    return [{name: 'ru'}, {name: 'en'}, {name: 'test'}];
+    // return Object.values(languagesAvailable).sort((a, b) => {
+    //   return a.name > b.name ? 1 : -1;
+    // });
   }
 
   _computeUseAltAccessMessage(language) {
