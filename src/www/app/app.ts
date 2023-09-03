@@ -295,8 +295,8 @@ export class App {
     this.rootEl.showToast(this.localize('update-downloaded'), 60000);
   }
 
-  private changeLanguage(event: Event & {detail: {language: String}}) {
-    // this.settings.set(SettingsKey.VPN_LANGUAGE, language);
+  private changeLanguage(event: Event & {detail: {language: string}}) {
+    this.settings.set(SettingsKey.VPN_LANGUAGE, event.detail.language);
     console.log(event, event.detail.language);
     // settings.set(SettingsKey.VPN_LANGUAGE, language);
   }
