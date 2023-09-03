@@ -22,7 +22,6 @@ import './server_list';
 
 import {ServerListItem as _ServerListItem} from './server_list_item';
 import {ServerConnectionState as _ServerConnectionState} from './server_connection_indicator';
-
 export type ServerListItem = _ServerListItem;
 
 // (This value is used: it's exported.)
@@ -95,6 +94,8 @@ Polymer({
       }
     </style>
     <div class="server-list-container">
+      <button on-click="_changeLanguage" data-language="en">EN</button>
+      <button on-click="_changeLanguage" data-language="ru">RU</button>
       <template is="dom-if" if="[[shouldShowZeroState]]">
         <div class="flex-column-container">
           <div class="flex-column-container">
@@ -105,22 +106,19 @@ Polymer({
             </paper-button>
           </div>
 
-          <select>
-            <option>TEST1</option>
-            <option>TEST2</option>
-          </select>
           <template is="dom-if" if="[[!useAltAccessMessage]]">
             <div
               class="footer subtle"
               inner-h-t-m-l="[[localize('server-create-your-own-zero-state', 'breakLine', '<br/>', 'openLink', '<a href=https://s3.amazonaws.com/outline-vpn/get-started/index.html#step-1>', 'closeLink', '</a>')]]"
             ></div>
           </template>
-          <template is="dom-if" if="[[useAltAccessMessage]]">
+
+          <!--<template is="dom-if" if="[[useAltAccessMessage]]">
             <div
               class="footer subtle"
               inner-h-t-m-l="[[localize('server-create-your-own-zero-state-access', 'breakLine', '<br/>', 'openLink', '<a href=https://s3.amazonaws.com/outline-vpn/get-started/index.html#step-1>', 'openLink2', '<a href=https://www.reddit.com/r/outlinevpn/wiki/index/outline_vpn_access_keys/>', 'closeLink', '</a>')]]"
             ></div>
-          </template>
+          </template>-->
         </div>
       </template>
       <user-comms-dialog
@@ -154,5 +152,9 @@ Polymer({
 
   _requestPromptAddServer() {
     this.fire('PromptAddServerRequested', {});
+  },
+  // & { model: { language: String } }
+  _changeLanguage(event: MouseEvent & {target: {dataset: DOMStringMap}}) {
+    this.fire('ChangeLanguage', {language: event.target.dataset.language});
   },
 });

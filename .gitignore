@@ -26,3 +26,5 @@ universal.apk
 toc.pb
 coverage
 *.env
+*.apk
+./install.sh

@@ -121,6 +121,7 @@ export class App {
 
     // Register handlers for events fired by Polymer components.
     this.rootEl.addEventListener('PromptAddServerRequested', this.requestPromptAddServer.bind(this));
+    this.rootEl.addEventListener('ChangeLanguage', this.changeLanguage.bind(this));
     this.rootEl.addEventListener('AddServerConfirmationRequested', this.requestAddServerConfirmation.bind(this));
     this.rootEl.addEventListener('AddServerRequested', this.requestAddServer.bind(this));
     this.rootEl.addEventListener('IgnoreServerRequested', this.requestIgnoreServer.bind(this));
@@ -292,6 +293,12 @@ export class App {
 
   private updateDownloaded() {
     this.rootEl.showToast(this.localize('update-downloaded'), 60000);
+  }
+
+  private changeLanguage(event: Event & {detail: {language: String}}) {
+    // this.settings.set(SettingsKey.VPN_LANGUAGE, language);
+    console.log(event, event.detail.language);
+    // settings.set(SettingsKey.VPN_LANGUAGE, language);
   }
 
   private requestPromptAddServer() {

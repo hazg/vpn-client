@@ -15,6 +15,7 @@
 import * as errors from '../../model/errors';
 import * as events from '../../model/events';
 import {Server, ServerType} from '../../model/server';
+import {Settings, SettingsKey} from '../settings';
 
 import {Tunnel, TunnelStatus, ShadowsocksSessionConfig} from '../tunnel';
 
@@ -86,8 +87,8 @@ export class OutlineServer implements Server {
     if (this.type !== ServerType.DYNAMIC_CONNECTION) {
       return;
     }
-
-    return new URL(this.accessKey);
+    const settings = new Settings();
+    return new URL(this.accessKey + '?lang=' + settings.get(SettingsKey.VPN_LANGUAGE) || 'en');
   }
 
   get isOutlineServer() {
