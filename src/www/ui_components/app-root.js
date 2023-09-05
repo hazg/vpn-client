@@ -325,9 +325,9 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
             name="country"
             id="countryView"
             selected-country="[[country]]"
-            countries="[[_getCountriesAvailableValues(LANGUAGES_AVAILABLE)]]"
-          ></country-view>
 
+          ></country-view>
+          <!-- countries="[[_getCountriesAvailableValues(LANGUAGES_AVAILABLE)]]" -->
 
           <licenses-view
             name="licenses"

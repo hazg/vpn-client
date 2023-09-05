@@ -380,6 +380,14 @@ export class App {
     this.serverRepo.rename(serverId, newName);
   }
 
+  private async updateCoutriesList() {
+    const sett = new Settings();
+
+    const servers = await sett.get(SettingsKey.VPN_SERVERS);
+    console.log('Updating countries list', servers);
+    this.rootEl.$.countryView.notifyPath('countries', servers);
+  }
+
   private async connectServer(event: CustomEvent) {
     event.stopImmediatePropagation();
 
@@ -400,9 +408,11 @@ export class App {
         connectionState: ServerConnectionState.CONNECTED,
         address: server.address,
       });
+
       console.log(`connected to server ${serverId}`);
       this.rootEl.showToast(this.localize('server-connected', 'serverName', this.getServerDisplayName(server)));
       this.maybeShowAutoConnectDialog();
+      this.updateCoutriesList();
     } catch (e) {
       this.updateServerListItem(serverId, {connectionState: ServerConnectionState.DISCONNECTED});
       console.error(`could not connect to server ${serverId}: ${e.name}`);

@@ -151,8 +151,4 @@ Polymer({
   _requestPromptAddServer() {
     this.fire('PromptAddServerRequested', {});
   },
-
-  _changeCountry(event: MouseEvent & {target: {dataset: DOMStringMap}}) {
-    this.fire('ChangeCountry', {country: event.target.dataset.country});
-  },
 });

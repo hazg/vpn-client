@@ -17,6 +17,7 @@
 import {DirMixin} from '@polymer/polymer/lib/mixins/dir-mixin.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {Settings, SettingsKey} from '../app/settings';
 class OutlineCountryView extends DirMixin(PolymerElement) {
   static get template() {
     return html`
@@ -55,7 +56,7 @@ class OutlineCountryView extends DirMixin(PolymerElement) {
 
       <div id="main">
         <paper-listbox selected="{{selectedCoutry}}" attr-for-selected="value" on-selected-changed="_countrySelected">
-          <template is="dom-repeat" items="{{countries}}" as="country">
+          <template is="dom-repeat" items="[[countries]]" as="country" mutable-data restamp="true">
             <paper-item class="country-item" value="{{country.name}}">
               <span class="country-name"
                 >{{country.flag}} {{country.title}}<small class="country-speed">{{country.speed}}</small></span
@@ -79,7 +80,12 @@ class OutlineCountryView extends DirMixin(PolymerElement) {
       // An array of {id, name, dir} country objects.
       countries: {
         type: Array,
-        readonly: true,
+        value() {
+          const settings = new Settings();
+          const servers = settings.get(SettingsKey.VPN_SERVERS);
+          console.log(servers);
+          return servers;
+        },
       },
     };
   }
