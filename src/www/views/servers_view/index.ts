@@ -94,8 +94,6 @@ Polymer({
       }
     </style>
     <div class="server-list-container">
-      <button on-click="_changeCountry" data-country="en">EN</button>
-      <button on-click="_changeCountry" data-country="ru">RU</button>
       <template is="dom-if" if="[[shouldShowZeroState]]">
         <div class="flex-column-container">
           <div class="flex-column-container">

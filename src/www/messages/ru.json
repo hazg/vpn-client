@@ -1,4 +1,5 @@
 {
+  "change-country": "Сменить страну",
   "about-outline": "VPN Not Locking это ПО, с помощью которого каждый может создать собственную сеть VPN, управлять ей и предоставлять к ней доступ другим пользователям. VPN Not Locking не так просто заблокировать. Чтобы узнать, как начать работу с VPN Not Locking, перейдите на страницу <a href={outlineUrl}>getoutline.org</a>.<br><br>VPN Not Locking это ПО с открытым исходным кодом, использующее протокол <a href={shadowsocksUrl}>Shadowsocks</a>. Вы можете присоединиться к работе над проектом на платформе <a href={gitHubUrl}>GitHub</a>, а также обсудить его с другими пользователями на сайте <a href={redditUrl}>Reddit</a>.",
   "about-page-title": "О приложении",
   "auto-connect-dialog-detail": "Если вы не отключитесь от сервера VPN Not Locking, VPN Not Locking автоматически установит соединение после следующего перезапуска устройства.",

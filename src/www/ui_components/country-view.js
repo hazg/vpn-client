@@ -17,7 +17,6 @@
 import {DirMixin} from '@polymer/polymer/lib/mixins/dir-mixin.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-
 class OutlineCountryView extends DirMixin(PolymerElement) {
   static get template() {
     return html`
@@ -43,6 +42,11 @@ class OutlineCountryView extends DirMixin(PolymerElement) {
             font-weight: normal;
           }
         }
+        .country-speed {
+          margin-left: 10px;
+          opacity: 0.8;
+          float: right;
+        }
         .country-name {
           text-align: left;
           flex-grow: 1;
@@ -52,9 +56,12 @@ class OutlineCountryView extends DirMixin(PolymerElement) {
       <div id="main">
         <paper-listbox selected="{{selectedCoutry}}" attr-for-selected="value" on-selected-changed="_countrySelected">
           <template is="dom-repeat" items="{{countries}}" as="country">
-            <paper-item class="country-item" value="{{country.id}}">
-              <span class="country-name">{{country.name}}</span>
-              <iron-icon icon="check" hidden$="{{_shouldHideCheckmark(selectedCountry, country.url)}}"></iron-icon>
+            <paper-item class="country-item" value="{{country.name}}">
+              <span class="country-name"
+                >{{country.flag}} {{country.title}}<small class="country-speed">{{country.speed}}</small></span
+              >
+
+              <iron-icon icon="check" hidden$="{{_shouldHideCheckmark(selectedCountry, country.name)}}"></iron-icon>
             </paper-item>
           </template>
         </paper-listbox>
@@ -76,13 +83,10 @@ class OutlineCountryView extends DirMixin(PolymerElement) {
       },
     };
   }
-  // _countriesList() {
-  //   [{name:},test1]
-  // }
+
   _countrySelected(event) {
-    const countryCode = event.detail.value;
-    const params = {bubbles: true, composed: true, detail: {countryCode}};
-    this.country = countryCode;
+    const params = {bubbles: true, composed: true, detail: {country: event.detail.value}};
+    this.selectedCountry = event.detail.value;
     this.dispatchEvent(new CustomEvent('SetCountryRequested', params));
   }
 

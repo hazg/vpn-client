@@ -36,6 +36,7 @@ import '@polymer/paper-item/paper-item.js';
 import '@polymer/paper-item/paper-icon-item.js';
 import '@polymer/paper-listbox/paper-listbox.js';
 import '@polymer/paper-toast/paper-toast.js';
+
 import 'outline-i18n/index.js';
 import './about-view.js';
 import './add-server-view.js';
@@ -49,17 +50,22 @@ import '../views/servers_view';
 import './server-rename-dialog.js';
 import './user-comms-dialog.js';
 
-import {AppLocalizeBehavior} from '@polymer/app-localize-behavior/app-localize-behavior.js';
+import {AppLocalizeBehavior} from '@polymer/app-localize-behavior';
 import {PaperMenuButton} from '@polymer/paper-menu-button/paper-menu-button.js';
 import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {Settings, SettingsKey} from '../app/settings';
 
 // Workaround:
 // https://github.com/PolymerElements/paper-menu-button/issues/101#issuecomment-297856912
 PaperMenuButton.prototype.properties.restoreFocusOnClose.value = false;
 
 export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) {
+  constructor() {
+    super();
+    this.settings = new Settings();
+  }
   static get template() {
     return html`
       <style>
@@ -268,7 +274,8 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
                 hidden$="[[shouldShowBackButton]]"
                 on-tap="openDrawer"
               >
-                <img src$="[[rootPath]]assets/icons/menu.png" alt="menu" />
+                <span>[[_getCurrentCountry()]]</span>
+                <!--<img src$="[[rootPath]]assets/icons/menu.png" alt="menu" />-->
               </paper-button>
               <paper-button
                 id="backBtn"
@@ -297,6 +304,7 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
         <iron-pages id="pages" selected="[[page]]" attr-for-selected="name">
           <servers-view name="servers" id="serversView" servers="[[servers]]" localize="[[localize]]" use-alt-access-message="[[useAltAccessMessage]]""></servers-view>
           <feedback-view name="feedback" id="feedbackView" localize="[[localize]]"></feedback-view>
+
           <about-view
             name="about"
             id="aboutView"
@@ -378,19 +386,23 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
               <img src$="[[rootPath]]assets/icons/outline.png" alt="outline"  />
               <span class="item-label">[[localize('servers-menu-item')]]</span>
             </paper-item>
+
             <paper-item name="feedback">
               <img src$="[[rootPath]]assets/icons/feedback.png" alt="feedback"  />
               [[localize('feedback-page-title')]]
             </paper-item>
+
             <paper-item name="about">
               <img src$="[[rootPath]]assets/icons/about.png" alt="about"  />
               [[localize('about-page-title')]]
             </paper-item>
+
             <paper-item name="help">
               <a href="https://s3.amazonaws.com/outline-vpn/index.html#/support" id="helpAnchor" hidden=""></a>
               <img src$="[[rootPath]]assets/icons/help.png" alt="help"  />
               [[localize('help-page-title')]]
             </paper-item>
+
             <paper-item name="language" class$="[[_computeIsLastVisibleMenuItem(shouldShowQuitButton)]]">
               <img src$="[[rootPath]]assets/icons/change_language.png" alt="change language"  />
               [[localize('change-language-page-title')]]
@@ -405,9 +417,11 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
               <img src$="[[rootPath]]assets/icons/quit.png" alt="quit" />
               [[localize('quit')]]
             </paper-item>
+
             <paper-item class="border-top">
               <a href="https://www.google.com/policies/privacy/">[[localize('privacy')]]</a>
             </paper-item>
+
             <paper-item>
               <a href="https://support.getoutline.org/s/article/Data-collection"
                 >[[localize('data-collection')]]</a
@@ -606,7 +620,7 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
   ready() {
     super.ready();
     this.setLanguage(this.language);
-
+    this.settings = new Settings();
     // Workaround for paper-behaviors' craptastic keyboard focus detection:
     // https://github.com/PolymerElements/paper-behaviors/issues/80
     // Monkeypatch the faulty Polymer.IronButtonStateImpl._detectKeyboardFocus implementation
@@ -665,8 +679,9 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
   }
 
   openDrawer() {
-    this.$.drawer.style.opacity = '1';
-    this.$.drawer.open();
+    this.changePage('country');
+    // this.$.drawer.style.opacity = '1';
+    // this.$.drawer.open();
   }
 
   closeDrawer() {
@@ -827,12 +842,17 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
     });
   }
 
-  _getCountriesAvailableValues(countriesAvailable) {
-    // console.log('COUNTRIES', servers[0])
-    return [{name: 'ru'}, {name: 'en'}, {name: 'test'}];
-    // return Object.values(languagesAvailable).sort((a, b) => {
-    //   return a.name > b.name ? 1 : -1;
-    // });
+  _getCountriesAvailableValues() {
+    const servers = this.settings.get(SettingsKey.VPN_SERVERS);
+    return servers;
+  }
+  _getCurrentCountry() {
+    const country = this.settings.get(SettingsKey.VPN_COUNTRY);
+    const servers = this.settings.get(SettingsKey.VPN_SERVERS);
+    let current = Object.entries(servers | []).find(el => {
+      return el[1].name === country;
+    });
+    return current ? current[0].flag : 'country';
   }
 
   _computeUseAltAccessMessage(language) {

@@ -121,7 +121,6 @@ export class App {
 
     // Register handlers for events fired by Polymer components.
     this.rootEl.addEventListener('PromptAddServerRequested', this.requestPromptAddServer.bind(this));
-    this.rootEl.addEventListener('ChangeCountry', this.changeCountry.bind(this));
     this.rootEl.addEventListener('AddServerConfirmationRequested', this.requestAddServerConfirmation.bind(this));
     this.rootEl.addEventListener('AddServerRequested', this.requestAddServer.bind(this));
     this.rootEl.addEventListener('IgnoreServerRequested', this.requestIgnoreServer.bind(this));
@@ -281,8 +280,7 @@ export class App {
   }
 
   private setCountry(event: CustomEvent) {
-    const countryCode = event.detail.countryCode;
-    this.settings.set(SettingsKey.VPN_COUNTRY, countryCode);
+    this.settings.set(SettingsKey.VPN_COUNTRY, event.detail.country);
     this.changeToDefaultPage();
   }
 
@@ -300,11 +298,6 @@ export class App {
 
   private updateDownloaded() {
     this.rootEl.showToast(this.localize('update-downloaded'), 60000);
-  }
-
-  private changeCountry(event: Event & {detail: {country: string}}) {
-    this.settings.set(SettingsKey.VPN_COUNTRY, event.detail.country);
-    console.log(`Set VPN country to: ${event.detail.country}`);
   }
 
   private requestPromptAddServer() {
@@ -524,6 +517,7 @@ export class App {
   private onServerConnected(event: events.ServerConnected): void {
     console.debug(`server ${event.server.id} connected`);
     this.updateServerListItem(event.server.id, {connectionState: ServerConnectionState.CONNECTED});
+    this.syncServersToUI();
   }
 
   private onServerDisconnected(event: events.ServerDisconnected): void {
