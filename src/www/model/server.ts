@@ -48,6 +48,9 @@ export interface Server {
   // must match one of the localized app message.
   errorMessageId?: string;
 
+  // Fetch countries.
+  fetchCountries(): Promise<void>;
+
   // Connects to the server, redirecting the device's traffic.
   connect(): Promise<void>;
 

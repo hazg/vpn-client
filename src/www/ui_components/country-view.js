@@ -52,15 +52,19 @@ class OutlineCountryView extends DirMixin(PolymerElement) {
           text-align: left;
           flex-grow: 1;
         }
+
+        .country-flag {
+          font-size: larger;
+          margin-right: 10px;
+        }
       </style>
 
       <div id="main">
         <paper-listbox selected="{{selectedCoutry}}" attr-for-selected="value" on-selected-changed="_countrySelected">
           <template is="dom-repeat" items="[[countries]]" as="country" mutable-data restamp="true">
             <paper-item class="country-item" value="{{country.name}}">
-              <span class="country-name"
-                >{{country.flag}} {{country.title}}<small class="country-speed">{{country.speed}}</small></span
-              >
+              <span class="country-flag">{{country.flag}}</span>
+              <span class="country-name"> {{country.title}}<small class="country-speed">{{country.speed}}</small></span>
 
               <iron-icon icon="check" hidden$="{{_shouldHideCheckmark(selectedCountry, country.name)}}"></iron-icon>
             </paper-item>

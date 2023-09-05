@@ -279,9 +279,28 @@ export class App {
     this.changeToDefaultPage();
   }
 
-  private setCountry(event: CustomEvent) {
+  private async setCountry(event: CustomEvent) {
     this.settings.set(SettingsKey.VPN_COUNTRY, event.detail.country);
-    this.changeToDefaultPage();
+    try {
+      await this.changeToDefaultPage();
+      const server = this.serverRepo.getAll()[0];
+      // console.log('Disconnecting from server', server);
+      // this.updateServerListItem(server.id,
+      // {
+      //   connectionState: ServerConnectionState.DISCONNECTING,
+      //   address: server.address,
+      // })
+      // await server.disconnect();
+
+      console.log('Connecting to server', server);
+      await server.connect();
+      this.updateServerListItem(server.id, {
+        connectionState: ServerConnectionState.CONNECTED,
+        address: server.address,
+      });
+    } catch (e) {
+      console.log("Can't find server", e);
+    }
   }
 
   private handleClipboardText(text: string) {
@@ -310,8 +329,15 @@ export class App {
     this.ignoredAccessKeys[accessKey] = true;
   }
 
+  private forgetAll() {
+    this.serverRepo.getAll().forEach(s => {
+      this.serverRepo.forget(s.id);
+    });
+  }
+
   private requestAddServer(event: CustomEvent) {
     try {
+      this.forgetAll();
       this.serverRepo.add(event.detail.accessKey);
     } catch (err) {
       this.changeToDefaultPage();
@@ -544,9 +570,14 @@ export class App {
     this.updateServerListItem(event.server.id, {connectionState: ServerConnectionState.RECONNECTING});
   }
 
-  private onServerAdded(event: events.ServerAdded) {
+  private async getCountriesInfo() {}
+
+  private async onServerAdded(event: events.ServerAdded) {
     const server = event.server;
     console.debug('Server added');
+    await server.fetchCountries();
+    console.log('Fetching countries', server);
+    await this.updateCoutriesList();
     this.syncServersToUI();
     this.changeToDefaultPage();
     this.rootEl.showToast(this.localize('server-added', 'serverName', this.getServerDisplayName(server)));

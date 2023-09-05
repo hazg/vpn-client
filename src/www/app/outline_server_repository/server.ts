@@ -92,11 +92,22 @@ export class OutlineServer implements Server {
     if (country === undefined) {
       country = 'en';
     }
-    return new URL(this.accessKey + '?lang=' + country);
+    let url = new URL(this.accessKey);
+    url.searchParams.set('lang', country);
+    return url;
   }
 
   get isOutlineServer() {
     return this.accessKey.includes('outline=1');
+  }
+
+  async fetchCountries() {
+    const settings = new Settings();
+
+    const servers = await fetch(this.sessionConfigLocation, {method: 'post'});
+    console.log('Recived servers', servers)
+
+    await settings.set(SettingsKey.VPN_SERVERS, await servers.json());
   }
 
   async connect() {
@@ -104,13 +115,7 @@ export class OutlineServer implements Server {
       this.sessionConfig = await fetchShadowsocksSessionConfig(this.sessionConfigLocation);
     }
 
-    console.log('Config', this.sessionConfigLocation);
-    const getServers = this.sessionConfigLocation;
-
-    const servers = await fetch(getServers, {method: 'post'});
-
-    const settings = new Settings();
-    await settings.set(SettingsKey.VPN_SERVERS, await servers.json());
+    await this.fetchCountries();
 
     try {
       await this.tunnel.start(this.sessionConfig);
