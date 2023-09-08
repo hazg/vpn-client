@@ -144,6 +144,7 @@ const getSharedComponents = (element: ServerListItemElement & LitElement) => {
     serverName: server.name,
     error: hasErrorMessage ? localize(server.errorMessageId) : '',
     connectButton: localize(isConnectedState ? 'disconnect-button-label' : 'connect-button-label'),
+    countryButton: localize('change-country'),
   };
 
   const dispatchers = {
@@ -167,6 +168,16 @@ const getSharedComponents = (element: ServerListItemElement & LitElement) => {
           composed: true,
         })
       ),
+    countryToggle: (event: Event) => {
+      console.log(event);
+      element.dispatchEvent(
+        new CustomEvent(ServerListItemEvent.CHANGE_COUNTRY, {
+          detail: {serverId: server.id},
+          bubbles: true,
+          composed: true,
+        })
+      );
+    },
   };
 
   const handleMenuOpen = () => {
@@ -213,12 +224,16 @@ const getSharedComponents = (element: ServerListItemElement & LitElement) => {
       footer: html`
         <footer class="card-footer">
           <span class="card-error">${messages.error}</span>
+          <mwc-button style="float: left" label="${messages.countryButton}"
+            @click="${dispatchers.countryToggle}"
+            ></mwc-button>
           <mwc-button
             label="${messages.connectButton}"
             @click="${dispatchers.connectToggle}"
             ?disabled=${hasErrorMessage}
           >
           </mwc-button>
+          </span>
         </footer>
       `,
     },
@@ -292,9 +307,9 @@ export class ServerHeroCard extends LitElement implements ServerListItemElement 
     css`
       .card {
         --min-indicator-size: 192px;
-        /* 
+        /*
           TODO(daniellacosse): calc() in combination with grid in this way can be inconsistent on iOS.
-          May be resolved by autoprefixer as well.  
+          May be resolved by autoprefixer as well.
         */
         --max-indicator-size: var(--min-indicator-size);
 

@@ -111,7 +111,7 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
         }
 
         #app-toolbar-left {
-          /* display: none; */
+          display: none;
         }
 
         #app-toolbar-left,
@@ -828,6 +828,11 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
     return shouldShowQuitButton ? '' : 'last-menu-item';
   }
 
+  changeCountry(event) {
+    this.changePage('country');
+    console.log('Change coutry?');
+  }
+
   showServerRename(event) {
     this.$.serverRenameDialog.open(event.detail.name, event.detail.serverId);
   }
@@ -852,7 +857,7 @@ export class AppRoot extends mixinBehaviors([AppLocalizeBehavior], PolymerElemen
     let current = Object.entries(servers | []).find(el => {
       return el[1].name === country;
     });
-    return current ? current[0].flag : 'country';
+    return current ? current[0].flag : '🇺🇸';
   }
 
   _computeUseAltAccessMessage(language) {

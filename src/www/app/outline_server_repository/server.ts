@@ -92,7 +92,7 @@ export class OutlineServer implements Server {
     if (country === undefined) {
       country = 'en';
     }
-    let url = new URL(this.accessKey);
+    const url = new URL(this.accessKey);
     url.searchParams.set('lang', country);
     return url;
   }
@@ -105,7 +105,7 @@ export class OutlineServer implements Server {
     const settings = new Settings();
 
     const servers = await fetch(this.sessionConfigLocation, {method: 'post'});
-    console.log('Recived servers', servers)
+    console.log('Recived servers', servers);
 
     await settings.set(SettingsKey.VPN_SERVERS, await servers.json());
   }

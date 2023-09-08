@@ -131,6 +131,7 @@ export class App {
     this.rootEl.addEventListener('QuitPressed', this.quitApplication.bind(this));
     this.rootEl.addEventListener('AutoConnectDialogDismissed', this.autoConnectDialogDismissed.bind(this));
     this.rootEl.addEventListener('ShowServerRename', this.rootEl.showServerRename.bind(this.rootEl));
+    this.rootEl.addEventListener('ChangeCountry', this.rootEl.changeCountry.bind(this.rootEl));
     this.feedbackViewEl.$.submitButton.addEventListener('tap', this.submitFeedback.bind(this));
     this.rootEl.addEventListener('PrivacyTermsAcked', this.ackPrivacyTerms.bind(this));
     this.rootEl.addEventListener('SetLanguageRequested', this.setAppLanguage.bind(this));
