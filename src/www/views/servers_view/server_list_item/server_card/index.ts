@@ -122,11 +122,15 @@ const sharedCSS = css`
     grid-area: footer;
     padding: var(--outline-mini-gutter) var(--outline-gutter);
     text-align: end;
+    display: flex;
+    justify-content: space-between;
   }
 
   .card-error {
     color: var(--outline-error);
     margin: 0 var(--outline-slim-gutter);
+    /* display: none; */
+    /* float: left; /*
   }
 `;
 
@@ -222,8 +226,8 @@ const getSharedComponents = (element: ServerListItemElement & LitElement) => {
         ></mwc-icon-button>
       `,
       footer: html`
+
         <footer class="card-footer">
-          <span class="card-error">${messages.error}</span>
           <mwc-button style="float: left" label="${messages.countryButton}"
             @click="${dispatchers.countryToggle}"
             ></mwc-button>
@@ -235,6 +239,7 @@ const getSharedComponents = (element: ServerListItemElement & LitElement) => {
           </mwc-button>
           </span>
         </footer>
+        <span class="card-error">${messages.error}</span>
       `,
     },
   };

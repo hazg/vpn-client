@@ -61,7 +61,7 @@ export const browserConfig = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /assets[/\\].*\.(png|woff2)$/,
+        test: /assets[/\\].*\.(png|woff2|svg)$/,
         use: ['file-loader'],
       },
     ],

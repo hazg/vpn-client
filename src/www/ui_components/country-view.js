@@ -17,7 +17,8 @@
 import {DirMixin} from '@polymer/polymer/lib/mixins/dir-mixin.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-import {Settings, SettingsKey} from '../app/settings';
+import { Settings, SettingsKey } from '../app/settings';
+
 class OutlineCountryView extends DirMixin(PolymerElement) {
   static get template() {
     return html`
@@ -54,16 +55,18 @@ class OutlineCountryView extends DirMixin(PolymerElement) {
         }
 
         .country-flag {
-          font-size: larger;
           margin-right: 10px;
+          width: 2.5em;
         }
       </style>
 
+
       <div id="main">
+        {{ru}}
         <paper-listbox selected="{{selectedCoutry}}" attr-for-selected="value" on-selected-changed="_countrySelected">
           <template is="dom-repeat" items="[[countries]]" as="country" mutable-data restamp="true">
             <paper-item class="country-item" value="{{country.name}}">
-              <span class="country-flag">{{country.flag}}</span>
+            <img class="country-flag" src$="[[rootPath]]assets/countries/{{country.flag}}.png" />
               <span class="country-name"> {{country.title}}<small class="country-speed">{{country.speed}}</small></span>
 
               <iron-icon icon="check" hidden$="{{_shouldHideCheckmark(selectedCountry, country.name)}}"></iron-icon>
@@ -71,23 +74,35 @@ class OutlineCountryView extends DirMixin(PolymerElement) {
           </template>
         </paper-listbox>
       </div>
+
     `;
   }
 
   static get is() {
     return 'country-view';
   }
+  _country() {
+    return '<h1>TEST</h1>';
+  }
+  static set flag(flag) {
+    this.flag = flag
+   }
+
+  static _renderFlag(flag) {
+    console.log(flag)
+    return '<p>test</p>'
+  }
 
   static get properties() {
     return {
       selectedCountry: String,
+      rootPath: String,
       // An array of {id, name, dir} country objects.
       countries: {
         type: Array,
         value() {
           const settings = new Settings();
           const servers = settings.get(SettingsKey.VPN_SERVERS);
-          console.log(servers);
           return servers;
         },
       },
