@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export SENTRY_DSN=https://febe864af7928ed11af5f725d1943ed3@o4505775384100864.ingest.sentry.io/4505775386787
+npm run action src/electron/build windows -- --buildMode=release --autoUpdateUrl="https://example.com/" --versionName=1.0.0

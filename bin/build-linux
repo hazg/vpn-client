@@ -1,0 +1,6 @@
+#!/bin/bash
+export SENTRY_DSN=https://febe864af7928ed11af5f725d1943ed3@o4505775384100864.ingest.sentry.io/4505775386787
+npm run action src/electron/build linux -- \
+  --buildMode=release --versionName=1.0.0
+
+#--autoUpdateUrl="https://example.com/"

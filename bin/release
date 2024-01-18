@@ -1,0 +1,6 @@
+#!/bin/sh
+npm run action src/cordova/build android -- \
+  --buildMode=release --versionName=1.0.0 # --verbose=true
+unzip \
+  -o ./platforms/android/Outline.zip \
+  -d ./platforms/android/
